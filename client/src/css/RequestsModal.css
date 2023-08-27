@@ -1,0 +1,174 @@
+.Requests-modal {
+    width: 400px;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    height: 79vh;
+    transform: translateX(-50%);
+    z-index: 100 !important;
+    border-radius: 13px;
+    overflow-y: auto;
+}
+
+.Requests-modal h3 {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.Requests-modal .request {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+    align-items: center;
+    margin: 10px;
+    border-radius: 13px;
+}
+
+.request-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.438);
+    z-index: 100;
+}
+
+.Requests-modal .request img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 13px;
+}
+
+.Requests-modal .request .req-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Requests-modal .request .req-left p {
+    margin-left: 5px;
+}
+
+.Requests-modal .request .btns {
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Requests-modal .request .btns button.accept, .Requests-modal .request .btns button.reject {
+    width: 60px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.Requests-modal .request .btns .reject {
+    background-color: red;
+}
+
+.Requests-modal .view-message {
+    width: 140px;
+    padding: 5px 8px;
+    color: #fff;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+.empty-modal {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B8BACC;
+}
+
+/* REQUEST WITH A MESSAGE: */
+.request-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 102;
+}
+
+.request-message h3 {
+    width: 100%;
+    margin-bottom: 10Px;
+    position: relative;
+}
+
+.request-message .profile-pic {
+    width: 70px !important;
+    height: 70px !important;
+    object-fit: cover !important;
+}
+
+.request-message .msg {
+    width: 88%;
+    height: 240px;
+    margin: 20px 0 15px;
+    border-radius: 13px;
+    padding: 10px;
+    word-break: break-all;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-40%) !important;
+    display: none;
+    z-index: 101;
+    cursor: pointer;
+}
+
+.close-request {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    transform: translateY(-20%) !important;
+    z-index: 101;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .Requests-modal h3 {
+        border-bottom: .4px solid #B8BACC;
+    }
+    .close-modal {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+    .Requests-modal .request p {
+        margin-left: 12px !important;
+    }
+    .Requests-modal .view-message {
+        width: 150px;
+    }
+}
+
+@media (max-width: 499px) {
+    .Requests-modal {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        border-radius: 0;
+    }
+    .Requests-modal h3 {
+        font-size: 16px;
+    }
+}

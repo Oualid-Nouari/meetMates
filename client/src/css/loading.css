@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.loading {
+    background-color: rgba(173, 173, 173, 0.068);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.loading img {
+    width: 150px;
+    animation: iconMove  1.3s infinite;
+}
+
+@keyframes iconMove {
+    0% {
+        transform: rotate(0deg) ;
+    }
+    50% {
+        transform: rotate(180deg) ;
+    }
+    100% {
+        transform: rotate(360deg) ;
+    }
+}

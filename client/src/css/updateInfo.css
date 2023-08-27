@@ -1,0 +1,335 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.add-infos {
+  z-index: 101;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  width: 700px;
+  overflow-x: hidden;
+}
+
+.add-infos .save-immediatly {
+  display: none;
+}
+
+.add-infos .close-add-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.add-infos h2 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.add-infos .inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-infos .inputs input,
+.add-infos .inputs textarea {
+  margin: 10px 0;
+  padding: 6px 10px;
+}
+
+.add-infos .inputs textarea {
+  resize: none;
+  height: 95px;
+}
+
+.add-infos .buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.add-infos .infos {
+  position: relative;
+}
+
+.add-infos .buttons span {
+  padding: 6px 10px;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+  border-radius: 31px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.add-infos .buttons span.previous {
+  background-color: #f86f03;
+  margin-right: 20px;
+}
+
+.add-infos .buttons span.disabled {
+  user-select: none;
+  cursor: no-drop;
+  opacity: 0.3;
+}
+
+.add-infos .buttons span.next {
+  margin-left: 20px;
+}
+
+.add-infos button.save {
+  background-color: #33ca2e;
+  border: none;
+  margin-left: 20px;
+  padding: 6px 10px;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+  border-radius: 31px;
+  cursor: pointer;
+}
+
+.add-infos .progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.add-infos .progress strong {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #acacac;
+  color: #acacac;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.add-infos .progress strong.done {
+  border-color: #f86f03;
+  color: #f86f03;
+}
+
+.add-infos .progress .line {
+  width: calc(100% - 80px);
+  height: 2px;
+  background-color: #acacac;
+}
+
+.add-infos .progress .line.done {
+  background-color: #f86f03;
+}
+
+/* PROFLIE AND BANNER IN modal */
+.add-infos .profileANDbanner {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 20px);
+  z-index: 3;
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-infos .profileANDbanner.active {
+  left: 0;
+}
+
+.add-infos .infos .change-pics {
+  position: relative;
+}
+
+.add-infos .infos .default-profile-container {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.add-infos .infos .default-profile-container .fa-xmark {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  z-index: 100;
+  font-size: 13px;
+  background-color: red;
+  border-radius: 50%;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-infos .infos .default-profile-container .fa-xmark:hover {
+  transform: scale(1.8);
+}
+
+.add-infos .infos .default-profile-container img {
+  border-radius: 13px;
+  object-fit: cover;
+  outline: 3px solid #fff;
+}
+
+.add-infos .infos .default-profile-container input,
+.default-banner-container input {
+  display: none;
+}
+
+.add-infos .infos .default-profile-container label,
+.default-banner-container label {
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+  width: 100%;
+  left: 0;
+  background-color: #0000008c;
+  text-align: center;
+  color: #fff;
+  padding: 8px 0;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.add-infos .infos .default-profile-container:hover .profile-label,
+.default-banner-container:hover .banner-label {
+  opacity: 1;
+}
+
+.default-banner-container .banner-in-add-info-modal {
+  object-fit: cover;
+  width: 400px;
+  height: 200px;
+}
+
+.err {
+  color: rgb(214, 7, 7);
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.356);
+  margin: 5px auto 10px;
+  width: 70%;
+  text-align: center;
+  padding: 3px;
+  border-radius: 13px;
+  font-size: 13px;
+}
+
+.err.shake {
+  animation: shake 0.5s infinite;
+}
+
+/* SHAKING ANIMATION: */
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+
+/* MEDIA QUERIES: */
+
+@media (max-width: 767px) {
+    .add-infos {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 1001;
+        overflow-y: hidden;
+      }
+      .add-infos .progress {
+        display: none;
+      }
+      .add-infos .profileANDbanner {
+        position: relative;
+        left: 0;
+      }
+      .add-infos .infos .default-profile-container label,
+      .default-banner-container label {
+        opacity: 1;
+      }
+      .add-infos .buttons {
+        display: none;
+      }
+      .add-infos .save-immediatly {
+        display: flex;
+        margin: 40px auto;
+      }
+      .add-infos .save-immediatly .cancel-edit,
+      .add-infos .save-immediatly .save {
+        margin-left: 20px;
+        padding: 6px 10px;
+        width: 100px;
+        text-align: center;
+        color: #fff;
+        border-radius: 31px;
+        cursor: pointer;
+        outline: none;
+      }
+      .add-infos .save-immediatly .cancel-edit {
+        background-color: red;
+        border: 1px solid red;
+      }
+}
+
+@media (max-width: 450px) {
+    .add-infos .infos .default-profile-container {
+        left: 23%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+      }
+      .default-banner-container  {
+        width: 100%;
+      }
+      .default-banner-container .banner-in-add-info-modal {
+        width: 100% ;
+      }
+}

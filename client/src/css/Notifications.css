@@ -1,0 +1,101 @@
+.notifications-modal {
+    width: 400px;
+    height: 79vh;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 13px;
+}
+
+.notifications-modal h3 {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.notif-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 6px;
+    padding: 4px 7px;
+    border-radius: 13px;
+}
+
+.notificaions {
+    height: 80%;
+    overflow-y: auto;
+    width: 100%;
+    cursor: pointer;
+}
+
+.notif-container p {
+    margin-left: 7px;
+    font-size: 13px;
+}
+
+.notif-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 13px;
+}
+
+.delete-notifs {
+    margin: 0 auto;
+    text-align: center;
+    padding: 4px 12px;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.empty-modal {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B8BACC;
+}
+
+.close-modal {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-30%);
+    display: none;
+    z-index: 101;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .notifications-modal h3 {
+        border-bottom: .4px solid #B8BACC;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .close-modal {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+    .notifications-modal .notif-container p {
+        margin-left: 12px !important;
+    }
+}
+
+@media (max-width: 499px) {
+    .notifications-modal {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        border-radius: 0;
+    }
+}

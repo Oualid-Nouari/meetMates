@@ -1,0 +1,244 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  overflow-x: hidden;
+}
+
+.middle-part {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20PX 10px;
+}
+
+.user-infos {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.user-infos .banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gradient {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, #000000, #000000ce, #00000000);
+}
+
+.user-infos .infos {
+  position: absolute;
+  bottom: 80px;
+  left: 100px;
+  z-index: 10;
+  color: #fff;
+  width: 87%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-infos .infos .mates {
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+}
+
+.user-infos .infos .mates button {
+  margin-top: 25px;
+  border-radius: 50px;
+  outline: none;
+  padding: 6px;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.user-infos .infos .mates .num {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.user-infos .infos .mates .num-posts,
+.user-infos .infos .mates .num-mates {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-infos .infos .mates .num-mates {
+  cursor: pointer;
+
+}
+
+.user-infos .infos .mates .num-posts h3,
+.user-infos .infos .mates .num-mates h3 {
+  text-align: center;
+}
+
+.user-infos .infos .essential-infos {
+  width: 60%;
+}
+
+.user-infos .infos .essential-infos h1, .user-infos .infos .essential-infos p {
+  text-shadow: 0 0 20px #000000;
+}
+
+.user-infos .infos .essential-infos h1 {
+  max-width: 90%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-infos .profile {
+  width: 180px;
+  border-radius: 35px;
+  outline: 2px solid #fff;
+  height: 170px;
+  object-fit: cover;
+}
+
+.user-infos .bio {
+  font-weight: lighter;
+  font-size: 15px;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 19px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1011;
+}
+
+.left-arrow:hover {
+  background-color: #fff;
+  color: #000000;
+  transform: rotate(360deg);
+  border: 1px solid #fff;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000da;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+/* USER CARD: */
+.main-of-page {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.user-btns {
+  width: 100%;
+  display: FLEX;
+  flex-direction: column;
+}
+
+
+
+/* MEDIA QUERIES: */
+
+@media (max-width: 767px) {
+  .middle-part {
+    width: 80vw;
+  }
+  .user-infos .infos {
+    flex-direction: column;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -1%);
+  }
+  .user-infos .infos .essential-infos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .user-infos .infos .essential-infos .bio {
+    text-align: center;
+  }
+  .user-infos .infos .mates {
+    width: 45%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 869px) {
+  .middle-part {
+    width: 60vw;
+  }
+  .user-infos .infos .mates {
+    width: 28%;
+  }
+}
+
+@media (min-width: 870px) and (max-width: 1199px) {
+  .middle-part {
+    width: 60%;
+  }
+  .user-infos .infos .mates {
+    width: 28%;
+  }
+}
+
+@media (max-width: 450px) {
+  .middle-part {
+    width: 100%;
+  }
+  .user-infos .infos .mates {
+    width: 78%;
+  }
+}
+
+.lazy-loading {
+  height: 140px;
+  margin-top: 18px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 13px;
+}
+
+.lazy-loading .lazy-loading-animation {
+  background-color: rgb(146, 146, 146);
+  width: 60px;
+  transform: rotate(15deg);
+  height: 120%;
+  filter: blur(12px);
+  position: absolute;
+  top: -20px;
+  animation: post-loading ease-in-out 2s infinite;
+}

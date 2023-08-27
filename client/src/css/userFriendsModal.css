@@ -1,0 +1,42 @@
+.user-friends-modal {
+    height: 70vh;
+    width: 400px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    border-radius: 13px;
+}
+
+.user-friends-modal h2 {
+    text-align: center;
+    padding: 10px;
+}
+
+.user-friends-modal .mates-list .left img {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    object-fit: cover;
+}
+
+.user-friends-modal .mate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    border-radius: 13px;
+}
+
+.user-friends-modal .mate .left {
+    display: flex;
+    align-items: center;
+}
+
+.user-friends-modal .mate .left p {
+    margin-left: 6px;
+}

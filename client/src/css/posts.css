@@ -1,0 +1,547 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.posts {
+  width: 100%;
+}
+
+.posts-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  min-height: 50vh;
+  width: 100% !important;
+}
+
+.posts-container .no-post {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.posts-head {
+  font-size: 25px;
+  margin-top: 5px;
+  display: none;
+}
+
+.posts-container .post {
+  border-radius: 13px;
+  margin-top: 18px;
+  padding: 0 10px;
+}
+
+@keyframes post-loading {
+  0%   { left: 0% }
+  
+  100% { left: 100% }
+}
+
+.posts-container .post .post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+.post .post-header .left-post-header .post-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.post .post-header .left-post-header .post-author .post-date {
+  font-size: 11px;
+}
+
+.posts-container .post .post-header .ellipsis {
+  font-size: 21px;
+  cursor: pointer;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.posts-container .post .post-text {
+  margin: 0px 10px;
+  word-break: break-word;
+}
+
+.posts-container .post .left-post-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.posts-container .post .post-header .author-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.posts-container .post .post-content .post-image {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.posts-container .post .post-content .post-image img {
+  width: 100%;
+  height: 300px;
+  border-radius: 13px;
+  object-fit: cover;
+}
+
+.likes-comments-info {
+  margin: 2px 9px;
+  font-size: 13px;
+  color: rgb(22, 22, 22);
+}
+
+.post-reactions {
+  border-top: 1px solid #acacacc0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.post-reactions i {
+  font-size: 21px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+i img.liked-icon {
+  width: 26px;
+  height: 26px;
+  transform: translateY(5px);
+}
+
+.post-reactions i.heart {
+  font-size: 5px;
+}
+
+.post-reactions i.open-post-to-comment {
+  margin-left: 19px;
+}
+
+/* MANAGE POST: */
+
+.manage-post {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 13px;
+  width: 200px;
+  z-index: 99;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  transform: scale(0, 0);
+  transform-origin: top right;
+}
+
+.manage-post.active {
+  transform: scale(1, 1);
+}
+
+.manage-post button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  text-align: start;
+}
+
+.manage-post button:first-child {
+  border-bottom: 1px solid #fff;
+}
+
+.manage-post button:first-child:hover {
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+}
+
+.manage-post button:last-child:hover {
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+}
+
+/* DELETE MODAL: */
+.delete-post-modal {
+  z-index: 101;
+  width: 300px;
+  height: 150px;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 13px;
+}
+
+.delete-post-modal h4 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.delete-post-modal .btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-post-modal .btns button {
+  width: 100px;
+  padding: 4px 3px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.delete-post-modal .btns button.reject {
+  border: 2px solid red;
+}
+.delete-post-modal .btns button.reject:hover {
+  background-color: red;
+  color: #fff;
+}
+
+.delete-post-modal .btns button.approve {
+  border: 2px solid rgb(0, 223, 74);
+}
+.delete-post-modal .btns button.approve:hover {
+  background-color: rgb(0, 223, 74);
+  color: #fff;
+}
+
+/* POST MODAL: */
+.post-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  background-color: rgba(0, 0, 0, 0.815);
+  width: 100%;
+  height: 100%;
+}
+
+.post-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 104 !important;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 600px;
+  height: 80vh;
+  border-radius: 13px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.post-modal::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.post-modal::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+}
+
+.post-modal .close-post-modal {
+  font-size: 18px;
+  margin: 0 20px 0 5px;
+  transform: translateY(8px);
+  cursor: pointer;
+}
+
+.post-modal .post-modal-content .post-modal-content-author {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 15px;
+  padding-bottom: 13px;
+}
+
+.post-modal .post-modal-content .post-modal-content-author img {
+  border-radius: 13px;
+  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.post-modal .post-modal-content .post-modal-content-author small {
+  font-size: 12px;
+}
+
+.post-modal .post-modal-content-text {
+  padding: 16px 0 16px 30px;
+  word-break: break-word;
+}
+
+.post-modal .post-modal-content-text {
+  padding-right: 30px;
+}
+
+.onlyText {
+  font-size: 22px;
+}
+
+.post-modal .post-modal-content-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-modal .post-modal-content-image img {
+  border-radius: 13px;
+  width: 95%;
+  margin: 6px 0;
+  object-fit: cover;
+}
+
+.post-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-modal-content {
+  margin-top: 25px;
+}
+
+.post-modal-content-reactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  margin-bottom: 6px;
+}
+
+.post-modal-content-reactions i {
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.post-modal-content-reactions i.comments {
+  margin-left: 20px;
+}
+
+.post-modal-content-reactions .left-post-reactions {
+  margin-left: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.post-modal-content-reactions .right-post-reactions {
+  margin-right: 15px;
+}
+
+/* COMMENTS */
+
+.post-modal .comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-modal .comments h3 {
+  margin: 10px;
+}
+
+.post-modal .comments .add-comment {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.post-modal .comments .add-comment .profile-in-comments {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  object-fit: cover;
+  margin: 0 15px;
+}
+
+.post-modal .comments .add-comment form {
+  width: 83%;
+}
+
+.post-modal .comments .add-comment textarea {
+  width: 100%;
+  padding: 6px 14px;
+  outline: none;
+  border-radius: 13px;
+  resize: none;
+  line-height: 1.8;
+  overflow-y: auto;
+}
+
+.post-modal .comments .add-comment textarea::-webkit-scrollbar {
+  width: 0;
+}
+
+.post-modal .comments .add-comment .adding-comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.post-modal .comments .add-comment .adding-comment-section .add-comment-container {
+  margin-top: 5px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.post-modal
+  .comments
+  .add-comment
+  .adding-comment-section
+  .add-comment-container
+  button {
+  padding: 4px 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.post-modal
+  .comments
+  .add-comment
+  .adding-comment-section
+  .add-comment-container
+  button.add {
+  color: #fff;
+}
+
+.comment {
+  width: 95%;
+  margin: 10px 15px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+}
+
+.comment-author-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  object-fit: cover;
+}
+
+.author-info {
+  display: flex;
+}
+
+.author-info .username {
+  display: FLEX;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px;
+}
+
+.author-info .username small {
+  font-size: 11px;
+}
+
+.comment .comment-text {
+  word-break: break-word;
+  padding: 10px 7px;
+}
+
+.no-comment {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+/* MEDIA QUERIES: */
+
+@media (max-width: 1200px) {
+  .posts-container {
+    margin: 20px 0;
+    width: 450px;
+  }
+  .posts-head {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .posts-head {
+    display: block;
+  }
+  .post-content .onlyText {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 870px) and (max-width: 1199px) {
+  .post-content .onlyText {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 766px) {
+  .post-modal {
+    width: 490px;
+  }
+}
+
+@media (max-width: 499px) {
+  .posts {
+    width: 100%;
+  }
+  .post-author h3 {
+    font-size: 15px;
+  }
+  .post-content .onlyText {
+    font-size: 17px;
+  }
+  .post-modal-content-text .onlyText {
+    font-size: 16px;
+  }
+  .post-modal .post-modal-content .post-modal-content-author img {
+    width: 45px;
+    height: 45px;
+  }
+  .post-modal-author {
+    font-size: 14px;
+  }
+  .comment {
+    width: 90%;
+  }
+  .post-modal .comments .add-comment form {
+    width: 78%;
+  }
+  .post-modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}

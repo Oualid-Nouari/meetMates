@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.aside {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #121212;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+}
+
+.aside button.aside-btn {
+    font-size: 19px;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #1E1E1E;
+    color: #B8BACC;
+    position: relative;
+}
+
+.aside button.aside-btn:hover {
+    transform: scale(1.2);
+}
+
+/* MEDIA QUERIES: */
+
+@media (max-width: 450px) {
+    .aside button.aside-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        margin: 0 4px;
+    }
+}

@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.suggested-users-side {
+    width: 300px;
+    margin-top: 20px;
+    border-radius: 13px;
+    padding: 0 10px;
+    height: 80vh;
+    position: sticky;
+    top: 60px;
+    overflow-y: auto;
+    overflow-x: visible !important;
+}
+
+.suggested-users-side::-webkit-scrollbar {
+    width: 2px;
+}
+
+.suggested-users-side h3 {
+    margin: 8px 10px;
+}
+
+.suggested-users-side .suggested-users-side-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: visible !important;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    border-radius: 13px;
+    position: relative;
+    
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-header .name-and-username {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-header .name-and-username small {
+    font-size: 12px;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-footer {
+    padding: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-footer button {
+    padding: 5px 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+.suggested-users-side .suggested-users-side-container .suggested-user .suggested-user-footer button.make-mate {
+    color: #fff;
+}
+
+
+.suggested-user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    object-fit: cover;
+}
+
+.send-a-message {
+    margin-right: 6px;
+}
+
+.unmate {
+    color: #fff;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 767px) {
+    .suggested-users-side {
+        display: none;
+    }
+}

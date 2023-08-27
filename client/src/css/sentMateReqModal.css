@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.send-mate-req-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100 !important;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.send-mate-req-modal h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.send-mate-req-modal form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 8px auto;
+    align-items: flex-end;
+}
+
+.xmark {
+    margin-top: 12px;
+}
+
+.send-mate-req-modal form textarea {
+    width: 450px;
+    height: 200px;
+    resize: none;
+    padding: 10px 15px;
+    outline: none;
+}
+
+.send-mate-req-modal form button {
+    margin-top: 16px;
+    padding: 4px 20px;
+    outline: none;
+    background-color: transparent;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+@media (max-width: 450px) {
+    .send-mate-req-modal {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    .send-mate-req-modal form {
+        width: 100%;
+    }
+    .send-mate-req-modal form textarea {
+        width: 100%;
+    }
+    .send-mate-req-modal h1 {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    .send-mate-req-modal .xmark {
+        margin-top: 8px;
+    }
+}
+
+@media (min-width: 451px) and (max-width: 767px) {
+    .send-mate-req-modal {
+        width: 90%;
+    }
+    .send-mate-req-modal form {
+        width: 100%;
+    }
+    .send-mate-req-modal form textarea {
+        width: 100%;
+    }
+}
