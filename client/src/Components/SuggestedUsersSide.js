@@ -19,14 +19,15 @@ const SuggestedUsersSide = () => {
     }, [friendsList])
     return (
         <section className='suggested-users-side' style={{ backgroundColor: colors.mainColor }}>
-            {SuggestedUsers ? <div>
-                <h3 style={{ color: colors.textColor }}>Other users</h3>
+            <h3 style={{ color: colors.textColor }}>Other users</h3>
+            {SuggestedUsers.length > 0 ? <div>
                 <div className='suggested-users-side-container'>
                     {SuggestedUsers.map((suggestedUser, index) => {
                         return <SuggestedUser setRequestTo={setRequestTo} setRequestSent={setRequestSent} key={index} suggestedUser={suggestedUser} requestSent={requestSent} />
                     })}
                 </div>
-            </div> : <div className='lazy-loading' style={{ backgroundColor: colors.fourthColor }}>
+            </div> : <div className='lazy-loading' style={{ backgroundColor: colors.secondColor }}>
+                <div className='lazy-loading-animation' style={{backgroundColor: colors.mainColor}}></div>
             </div>}
         </section>
     )

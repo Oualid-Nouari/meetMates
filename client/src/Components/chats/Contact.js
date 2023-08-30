@@ -45,7 +45,7 @@ const Contact = ({ contact }) => {
                     </div>
                     { chatWith === contactDetails._id && <Conversation setChatWith={setChatWith} setContactMessages={setContactMessages} contactDetails={contactDetails} /> }
                 </div> :
-                <div className='lazy-loading'></div>
+                <div className='lazy-loading' style={{backgroundColor: colors.mainColor}}><div className='lazy-loading-animation'></div></div>
             }
         </>
     )

@@ -14,6 +14,7 @@
   padding: 20px;
   width: 700px;
   overflow-x: hidden;
+  border-radius: 13px;
 }
 
 .add-infos .save-immediatly {
@@ -220,7 +221,7 @@
 }
 
 .err {
-  color: rgb(214, 7, 7);
+  color: rgb(219, 219, 219);
   border: 1px solid red;
   background-color: rgba(255, 0, 0, 0.356);
   margin: 5px auto 10px;

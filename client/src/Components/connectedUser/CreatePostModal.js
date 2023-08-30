@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Default_image from '../../imgs/demo profile.png'
 import { Contexts } from '../../contexts/contexts'
 import { convertToBase64 } from './addInfosModal'
@@ -7,8 +7,10 @@ import moment from"moment";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCircleXmark} from '@fortawesome/free-regular-svg-icons'
+import Loading from '../Loading'
 const CreatePostModal = ({post, setPost, openCreatePostModal, setOpenCreatePostModal, setPostCreated}) => {
     let { user, setUploadedPostData, colors } = useContext(Contexts);
+    const [isLoading, setIsLoading] = useState(false)
     let text = useRef(null)
     const handlePostTextChange = () => {
         setPost({...post, postText: text.current.value})
@@ -28,6 +30,7 @@ const CreatePostModal = ({post, setPost, openCreatePostModal, setOpenCreatePostM
     const date = new Date();
     let day = dayOfWeek[date.getDay()];
     const handleSubmit = (e) => {
+        setIsLoading(true)
         e.preventDefault();
         axios.post(`${process.env.REACT_APP_API_URL}/post`, {...post, postTime: `${day}, ${moment().format('MM-DD-YYYY hh:mm')}`}, {
             headers: {
@@ -43,11 +46,13 @@ const CreatePostModal = ({post, setPost, openCreatePostModal, setOpenCreatePostM
             setTimeout(() => {
                 setPostCreated(false)
             }, 3000)
+            setIsLoading(false)
         })
         .catch((err) => console.log(err));
     }
     return (
         <form onSubmit={handleSubmit} style={{backgroundColor: colors.mainColor}} className={!openCreatePostModal ? ' handle-post-modal' : ' handle-post-modal active'}>
+            { isLoading && <Loading /> }
             <i style={{color: colors.textColor}} className="xmark" onClick={() => {setOpenCreatePostModal(false); setPost({...post, postText: '', postImage: ''})}}><FontAwesomeIcon icon={faCircleXmark} /></i>
             <h1 style={{color: colors.textColor}}>Create new post</h1>
             <div className=' text-part-modal'>

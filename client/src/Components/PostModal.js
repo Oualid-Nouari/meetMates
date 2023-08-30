@@ -13,6 +13,7 @@ import Comment from './Comment';
 
 const PostModal = ({ post, setPostOpened, setShowPostModal }) => {
     const { colors, socket, setLikedPosts, likedPosts } = useContext(Contexts)
+    const [connectedUser, setConnectedUser] = useState()
     const [author, setAuthor] = useState(null)
     const getAuthorData = async () => {
         post && await axios.get(`${process.env.REACT_APP_API_URL}/author?id=${post.postAuthor}`)
@@ -22,6 +23,11 @@ const PostModal = ({ post, setPostOpened, setShowPostModal }) => {
             .catch(err => console.log(err));
     }
     useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/user`, {
+            headers: {
+                'access_header' : `bearer ${localStorage.getItem('token')}`
+            }
+        }).then(Response => setConnectedUser(Response.data))
         getAuthorData()
     }, []);
     const handleCloseModal = () => {
@@ -123,7 +129,7 @@ const PostModal = ({ post, setPostOpened, setShowPostModal }) => {
     }
     return (
         <React.Fragment>
-            {post && <section className='post-modal' style={{ backgroundColor: colors.mainColor, outline: `3px solid ${colors.fourthColor}` }}>
+            {post && connectedUser ? <section className='post-modal' style={{ backgroundColor: colors.mainColor, outline: `3px solid ${colors.fourthColor}` }}>
                 {author ?
                     <div className='post-modal-container'>
                         <div className='post-modal-content'>
@@ -155,7 +161,7 @@ const PostModal = ({ post, setPostOpened, setShowPostModal }) => {
                         </div>
                         <section className='comments'>
                             <div className='add-comment'>
-                                <img className='profile-in-comments' src={author.profileImage || Default_profile} alt="profile" />
+                                <img className='profile-in-comments' src={connectedUser.profileImage || Default_profile} alt="profile" />
                                 <form onSubmit={postComment} className='adding-comment-section'>
                                     <textarea
                                         required
@@ -184,7 +190,7 @@ const PostModal = ({ post, setPostOpened, setShowPostModal }) => {
                         </section>
                     </div> : <Loading />
                 }
-            </section>}
+            </section> : <Loading />}
         </React.Fragment>
     )
 }

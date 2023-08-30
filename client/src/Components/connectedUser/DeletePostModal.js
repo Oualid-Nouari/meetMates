@@ -1,15 +1,22 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Contexts } from '../../contexts/contexts';
+import Loading from '../Loading';
 
 const DeletePostModal = ({postToDelete}) => {
     const { setOpenDeletePostModal, colors } = useContext(Contexts);
     const [isHovered, setIsHovered] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const deletePost = () => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/post?postid=${postToDelete}`).then((Resposns) => window.location.reload()).catch(err => console.log(err));
+      setIsLoading(true)
+        axios.delete(`${process.env.REACT_APP_API_URL}/post?postid=${postToDelete}`).then((Resposns) => {
+          window.location.reload()
+          setIsLoading(false)
+        }).catch(err => console.log(err));
     }
   return (
     <div className='delete-post-modal' style={{backgroundColor: colors.mainColor}}>
+      { isLoading && <Loading /> }
       <h4 style={{color: colors.textColor}}>You sure wanna delete this post</h4>
       <div className='btns'>
         <button onMouseEnter={() => setIsHovered('reject')} onMouseLeave={() => setIsHovered('')} style={{color: isHovered === 'reject' ? '#fff' : colors.textColor}} className='reject' onClick={() => setOpenDeletePostModal(false)}>Decline</button>

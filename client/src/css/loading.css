@@ -6,8 +6,7 @@
 }
 
 .loading {
-    background-color: rgba(173, 173, 173, 0.068);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -16,6 +15,8 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    z-index: 10000 !important;
+    border-radius: 13px;
 }
 
 .loading img {

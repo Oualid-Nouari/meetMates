@@ -233,7 +233,7 @@ body {
 }
 
 .lazy-loading .lazy-loading-animation {
-  background-color: rgb(146, 146, 146);
+  background-color: #ffffff52;
   width: 60px;
   transform: rotate(15deg);
   height: 120%;

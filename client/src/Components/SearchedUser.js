@@ -24,7 +24,7 @@ const SearchedUser = ({ searchedUser }) => {
                     }>
                     <img src={searchedUser.profileImage || Default_profile} alt="profile" className='searched-user-profile' />
                     <p>{searchedUser.username}</p>
-                </a> : <div className='lazy-loading' style={{color: colors.textColor}}>Loading</div>
+                </a> : <div className='lazy-loading' style={{ backgroundColor: colors.secondColor}}> <div className='lazy-loading-animation' style={{backgroundColor: colors.mainColor}}></div> </div>
             }
         </React.Fragment>
     )

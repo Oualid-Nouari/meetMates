@@ -13,6 +13,7 @@ import ManagePost from './connectedUser/ManagePost'
 import DeletePostModal from './connectedUser/DeletePostModal'
 const Post = ({ post, setPostOpened }) => {
     const { user, socket, likedPosts, setLikedPosts, openDeletePostModal, colors } = useContext(Contexts);
+    const [connectedUser, setConnectedUser] = useState()
     const [author, setAuthor] = useState(null)
     const [openManagePost, setOpenManagePost] = useState(false);
     const pathToProfile = `/users/${post.postAuthor}`
@@ -24,6 +25,11 @@ const Post = ({ post, setPostOpened }) => {
             .catch(err => console.log(err));
     }
     useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/user`, {
+            headers: {
+                'access_header' : `bearer ${localStorage.getItem('token')}`
+            }
+        }).then(Response => setConnectedUser(Response.data))
         getAuthorData()
     }, []);
     const handleManagePost = () => {
@@ -49,7 +55,7 @@ const Post = ({ post, setPostOpened }) => {
                 }
             }).then(Response => {
                 let likedPost = Response.data.likedPost
-                if (likedPost.receiverId === post.postAuthor) {
+                if (likedPost.receiverId === post.postAuthor && connectedUser.id !== likedPost.receiverId) {
                     axios.post(`${process.env.REACT_APP_API_URL}/notification?type=likePost&senderId=${likedPost.senderId}&receiverId=${likedPost.receiverId}&postId=${likedPost.likedPostId}`)
                         .then(Response => {
                             let newNotification = Response.data.notification
@@ -82,7 +88,7 @@ const Post = ({ post, setPostOpened }) => {
     }
     return (
         <div>
-            {author ?
+            {author && connectedUser ?
                 <div className='post' style={{ backgroundColor: colors.mainColor }}>
                     <div href={user && post.postAuthor === user.id ? '/profile' : pathToProfile} rel='noreferrer' target='blank' className='post-header'>
                         <a className='left-post-header' href={user && post.postAuthor === user.id ? '/profile' : pathToProfile} rel='noreferrer' target='blank'>

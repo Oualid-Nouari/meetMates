@@ -16,7 +16,7 @@ const FriendsList = ({ userFriends, setOpenFriendList }) => {
             {userFriends.length > 0 ?
             userFriends.map((friend, index) => {
                 return <Friend friend={friend} key={index} />
-            }): <div style={{color: colors.textColor}} >Empty List</div>
+            }): <div className='empty-friends-list' style={{color: colors.textColor}} >Empty List</div>
         } 
         </div>
     )

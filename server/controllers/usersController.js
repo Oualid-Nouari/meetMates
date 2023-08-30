@@ -33,8 +33,8 @@ const updateUser = async (req, res) => {
     try {
         const user = await userModel.findByIdAndUpdate(userId, { fullName, username, bio, profileImage, bannerImage }, { new: true, runValidators: true });
         res.status(200).json({ id: user._id, fullName: user.fullName, username: user.username, bio: user.bio, profileImage: user.profileImage, bannerImage: user.bannerImage });
-    } catch (err) {
-        console.log(err)
+    } catch (error) {
+        res.json({error})
     }
 }
 

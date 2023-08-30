@@ -56,7 +56,8 @@ const ExplorePosts = () => {
                 })}
             </div>
             {hasMoreData ?
-                <div className='lazy-loading' ref={scrollRef} style={{backgroundColor: colors.fourthColor}}>
+                <div className='lazy-loading' ref={scrollRef} style={{backgroundColor: colors.mainColor}}>
+                    <div className='lazy-loading-animation'></div>
                 </div> : <div></div>
             }
         </div>

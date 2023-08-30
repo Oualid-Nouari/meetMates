@@ -10,6 +10,7 @@ import NotificationsModal from './NotificationsModal'
 import Chat from './chats/Chat'
 import axios from 'axios'
 import SearchedUser from './SearchedUser'
+import Loading from './Loading'
 
 const PlatHeader = ({ openSettings, setOpenSettings }) => {
   let { user, requestsReceived, notifsReceived, deliveredMessages, openMessaging, setOpenMessaging, colors, isDarkMode } = useContext(Contexts)
@@ -19,6 +20,7 @@ const PlatHeader = ({ openSettings, setOpenSettings }) => {
   const [searchedUsers, setSearchedUsers] = useState([])
   const [openSearchBar, setOpenSearchBar] = useState(false) // for mobile devices
   const [hover, setHover] = useState(false) // for dark theme
+  const [searchDone, setSearchDone] = useState(false)
   const handleOpenMessaging = () => {
     setOpenMessaging(true)
     setOpenRequestsModal(false)
@@ -32,11 +34,13 @@ const PlatHeader = ({ openSettings, setOpenSettings }) => {
   openMessaging || openRequestsModal || openNotifsModal ? document.body.style.overflowY = 'hidden' : document.body.style.overflowY = 'auto'
   // HANDLING SEARCH:
   useEffect(() => {
+    setSearchDone(false)
     if (searchText.trim() !== '') {
       axios
         .get(`${process.env.REACT_APP_API_URL}/searchUsers?searchText=${searchText}`, { headers: { 'access_header': `bearer ${localStorage.getItem('token')}` } })
         .then((response) => {
           setSearchedUsers([...response.data.searchedUsers]);
+          setSearchDone(true)
         })
         .catch((err) => console.log(err));
     } else {
@@ -77,10 +81,11 @@ const PlatHeader = ({ openSettings, setOpenSettings }) => {
                   }
                 }
               >Search results</h4>
-              {searchedUsers.length > 0 ?
+              { !searchDone ? <div className='loading-in-search'><Loading /></div>  : searchedUsers.length > 0 && searchDone ?
               searchedUsers.map((searchedUser, index) => {
                 return <SearchedUser key={index} searchedUser={searchedUser} />
-              }) : <div className='no-results' style={{color: colors.textColor}}>No Results</div>
+              }) : searchDone && searchedUsers.length === 0 ? <div className='no-results' style={{color: colors.textColor}}>No Results</div>
+              : <div className='loading-in-search'><Loading /></div>
             }
             </div>
           }

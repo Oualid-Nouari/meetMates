@@ -60,7 +60,7 @@ const Request = ({ req }) => {
     <div>
       {reqSender ?
         <div className='request' style={{ backgroundColor: colors.secondColor }}>
-          {reqRemoved && <div className='loading'> <Loading /> </div>}
+          {reqRemoved &&<Loading />}
           {openRequestMessage && <RequestMsg setReqRemoved={setReqRemoved} req={req} reqSender={reqSender} setOpenRequestMessage={setOpenRequestMessage} />}
           <div className='req-left'>
             <img src={reqSender.profileImage || Default_profile} alt="Profile_image" />

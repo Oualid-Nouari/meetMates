@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Service from '../../imgs/signup-image.jpg'
 import Axios from 'axios'
-import Loading from '../Loading';
 
 const Signup = ({ setAccountCreated }) => {
     // Sign up
@@ -55,12 +54,15 @@ const Signup = ({ setAccountCreated }) => {
         setLoginErr(false)
     }
     const login = (e) => {
+        setCreatingAccount(true)
         e.preventDefault()
         Axios.post(`${process.env.REACT_APP_API_URL}/login`, loginForm).then((Response) => {
             if (Response.data.error) {
+                setCreatingAccount(false)
                 setLoginErr(Response.data.error)
             } else {
                 localStorage.setItem('token', Response.data.token)
+                setCreatingAccount(false)
                 window.location.assign("/")
             }
         })
@@ -70,33 +72,30 @@ const Signup = ({ setAccountCreated }) => {
         setSignupForm({ fullName: '', username: '', email: '', password: '', })
         setLoginForm({ email: '', password: '' });
     }
-    // SWITCH THE FORM:
     return (
         <main className='main-home'>
             <div className='card' style={{ transform: flipCard ? 'rotateY(0deg)' : 'rotateY(-180deg)' }}>
                 <div className='front'>
                     <img src={Service} alt="Logo" className='sign-up-image' />
                     <form onSubmit={signup}>
-                        {creatingAccount && <div className='loading'> <Loading /> </div>}
                         <h2>Sign up</h2>
                         <input type="text" placeholder='Name...' name="fullName" value={signupForm.fullName} onChange={handleChange} />
                         <input type="text" placeholder='Username...' name="username" value={signupForm.username} onChange={handleChange} />
                         <input type="email" placeholder='Email...' name="email" value={signupForm.email} onChange={handleChange} />
                         <input type="password" placeholder='Password(at least 8 characters long)...' name="password" value={signupForm.password} onChange={handleChange} />
                         {signupErr && <h2 className='error'>{signupErr}</h2>}
-                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>Sign up</button>
+                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Please wait' : 'Sign up'}</button>
                         <span>Already have an account ? <strong onClick={() => { setFlipCard(!flipCard); emptyFields(); setSignupErr(false) }}>Login</strong></span>
                     </form>
                 </div>
                 <div className='back'>
                     <img src={Service} alt="Logo" className='sign-up-image' />
                     <form onSubmit={login}>
-                        {creatingAccount && <div className='loading'> <Loading /> </div>}
                         <h2>Login</h2>
                         <input type="email" placeholder='Email...' name="email" value={loginForm.email} onChange={handleLoginChange} />
                         <input type="password" placeholder='Password...' name="password" value={loginForm.password} onChange={handleLoginChange} />
                         {loginErr && <h2 className='error'>{loginErr}</h2>}
-                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>Login</button>
+                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Checking account' : 'Login'}</button>
                         <span>Don't have an acoount yet ? <strong onClick={() => { setFlipCard(!flipCard); emptyFields(); setLoginErr(false) }}>Sign up</strong></span>
                     </form>
                 </div>

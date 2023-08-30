@@ -68,7 +68,8 @@ const UserInfo = ({ user, setOpenInfosForm, requestSent, setRequestSent, setRequ
         window.location.assign('/sign')
     }
   return (
-    <div className='user-infos'>
+    <React.Fragment>
+      {friendsList && <div className='user-infos'>
       <img className='banner' src={user.bannerImage || Default_banner} alt="Banner" />
       <div className='infos'>
         <div className='essential-infos'>
@@ -103,7 +104,8 @@ const UserInfo = ({ user, setOpenInfosForm, requestSent, setRequestSent, setRequ
         </div>
       </div>
       <div className='gradient'></div>
-    </div>
+    </div>}
+    </React.Fragment>
   )
 }
 

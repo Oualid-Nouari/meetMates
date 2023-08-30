@@ -4,7 +4,7 @@ import Default_profile from '../../imgs/demo profile.png'
 import '../../css/updateInfo.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCircleXmark} from '@fortawesome/free-regular-svg-icons'
-
+import Loading from '../Loading'
 import axios from 'axios'
 import { Contexts } from '../../contexts/contexts'
 const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
@@ -12,6 +12,7 @@ const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
     const [err, setErr] = useState('')
     const [formState, setFormState] = useState('step 1')
     const [shakeErr, setShakeErr] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     // HANDLING USER INFOS:
     const handleChange = (e) => {
         let {name, value} = e.target;
@@ -40,6 +41,7 @@ const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
     }
     // SUBMITTING THE FORM:
     const handelSubmit = (e) => {
+        setIsLoading(true)
         e.preventDefault();
         axios.patch(`${process.env.REACT_APP_API_URL}/user`, newUserData, {
             headers: {
@@ -48,9 +50,11 @@ const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
         })
         .then(Response => {
             if(Response.data.error) {
-                let error = Response.data.error.toString().split(':')[2]
+                let error = Response.data.error.errors.fullName.message
+                console.log(error)
                 setErr(error)
                 setFormState('step 1');
+                setIsLoading(false)
                 if(err !== '') {
                     setShakeErr(true)
                     setTimeout(() => {
@@ -60,9 +64,14 @@ const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
             } else {
                 setUser(Response.data);
                 setOpenInfosForm(false)
+                setIsLoading(false)
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            setErr('Username is required!')
+            setIsLoading(false)
+            setFormState('step 1')
+        })
     }
     const removeProfilePicture = () => {
         setNewUserData({...newUserData, profileImage: ''})
@@ -70,6 +79,7 @@ const AddInfosModal = ({setOpenInfosForm, openAddInfosForm }) => {
     return (
         <div>
             <form className="add-infos" onSubmit={handelSubmit} style={{backgroundColor: colors.mainColor}} >
+                { isLoading && <Loading /> }
                 <i className='close-add-info' style={{color: colors.textColor}} onClick={() => setOpenInfosForm(false)}><FontAwesomeIcon icon={faCircleXmark} /></i>
                 <div className='progress'>
                     <strong className='done'>1</strong>

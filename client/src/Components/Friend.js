@@ -28,7 +28,7 @@ const Friend = ({friend}) => {
     }
     return (
         <div>
-            {friendDetails  ?
+            {friendDetails && connectedUser ?
             <button onClick={goToUserProfile} className='friend' style={{backgroundColor: colors.secondColor}}>
                 <div className='left-side'>
                     <img src={friendDetails.profileImage || Default_profile } alt='profile' />

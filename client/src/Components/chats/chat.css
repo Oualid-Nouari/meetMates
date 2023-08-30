@@ -199,7 +199,8 @@ nav {
 
 .message-status {
     color: #B8BACC !important;
-    transform: translate(-6px, -17px);
+    transform: translate(-10px, -13px);
+    font-size: 15px;
 }
 
 .messageANDtime {

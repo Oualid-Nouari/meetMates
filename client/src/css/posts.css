@@ -290,6 +290,7 @@ i img.liked-icon {
   margin-right: 5px;
   width: 40px;
   height: 40px;
+  object-fit: cover;
 }
 
 .post-modal .post-modal-content .post-modal-content-author small {

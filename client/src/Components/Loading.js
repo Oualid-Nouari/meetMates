@@ -4,11 +4,10 @@ import '../css/loading.css'
 import { Contexts } from '../contexts/contexts'
 
 const Loading = () => {
-    const { colors } = useContext(Contexts)
+    const { isDarkMode } = useContext(Contexts)
     return (
-        <div className='loading'>
+        <div className='loading' style={{backgroundColor: !isDarkMode ? 'rgba(245, 246, 250, 0.8)' : 'rgba(24, 25, 26, 0.8)'}}>
             <img src={Logo} alt="Loading" />
-            <h3 style={{color: colors.textColor}}>Loading...</h3>
         </div>
     )
 }
