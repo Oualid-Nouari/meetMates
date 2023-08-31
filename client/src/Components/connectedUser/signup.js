@@ -84,7 +84,7 @@ const Signup = ({ setAccountCreated }) => {
                         <input type="email" placeholder='Email...' name="email" value={signupForm.email} onChange={handleChange} />
                         <input type="password" placeholder='Password(at least 8 characters long)...' name="password" value={signupForm.password} onChange={handleChange} />
                         {signupErr && <h2 className='error'>{signupErr}</h2>}
-                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Please wait' : 'Sign up'}</button>
+                        <button className='submit-form' disabled={creatingAccount ? true : false} style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Please wait' : 'Sign up'}</button>
                         <span>Already have an account ? <strong onClick={() => { setFlipCard(!flipCard); emptyFields(); setSignupErr(false) }}>Login</strong></span>
                     </form>
                 </div>
@@ -95,7 +95,7 @@ const Signup = ({ setAccountCreated }) => {
                         <input type="email" placeholder='Email...' name="email" value={loginForm.email} onChange={handleLoginChange} />
                         <input type="password" placeholder='Password...' name="password" value={loginForm.password} onChange={handleLoginChange} />
                         {loginErr && <h2 className='error'>{loginErr}</h2>}
-                        <button className='submit-form' style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Checking account' : 'Login'}</button>
+                        <button className='submit-form' disabled={creatingAccount ? true : false} style={{ opacity: creatingAccount ? .4 : 1, cursor: creatingAccount ? 'no-drop' : 'pointer' }}>{creatingAccount ? 'Checking account' : 'Login'}</button>
                         <span>Don't have an acoount yet ? <strong onClick={() => { setFlipCard(!flipCard); emptyFields(); setLoginErr(false) }}>Sign up</strong></span>
                     </form>
                 </div>
