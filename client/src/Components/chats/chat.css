@@ -26,6 +26,11 @@ nav {
     overflow-y: auto;
 }
 
+.no-friends {
+    text-align: center;
+    width: 100%;
+}
+
 .contacts-list-header {
     display: flex;
     flex-direction: column;

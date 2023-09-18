@@ -11,9 +11,10 @@ const ChatApp = ({contacts}) => {
                     <h4 style={{color: colors.textColor}}>Contatcs</h4>
                 </header>
                 <ul>
-                    {contacts.map((contact, index) => {
-                        return <Contact contact={contact} key={index} />
-                    })}
+                    {
+                        contacts.length > 0 ? contacts.map((contact, index) => {
+                            return <Contact contact={contact} key={index} /> 
+                    }) : <p style={{color: colors.textColor}} className='no-friends'>You have no friends yet !</p>}
                 </ul>
             </div>
         </div>
